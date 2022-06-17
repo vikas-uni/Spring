@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0"> <display-name>Archetype Created Web Application</display-name>
+ 
+	<servlet>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+ 
+	<servlet-mapping>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping> 
+</web-app>
+
+<!-- The web.xml file is the file that defines everything about an application that a server needs to know. 
+It is placed in /WEB-INF/ directory of the application. The <servlet> element declares the DispatcherServlet. 
+When the DispatcherServlet is initialized, the framework will try to load the application context from a file 
+named [servlet-name]-servlet.xml located in /WEB-INF/ directory. So, we have created the mvc-dispatcher-servlet.xml file, 
+that will be explained below. The <servlet-mapping> element of web.xml file specifies what URLs will be handled by the DispatcherServlet. -->

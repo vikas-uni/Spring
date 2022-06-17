@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    					 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+      
+      <!-- below config is not needed when component-scan is used -->     
+    <!-- <context:annotation-config />  -->
+    <context:component-scan base-package="com.autodetection" />   
+   
+    <!-- enable spring annotation -->
+    
+    <bean id="person" class="com.autodetection.Person" > 
+		<property name="name" value="Infogain" /> 
+	</bean> 
+      
+   <bean id="customer" class="com.autodetection.Customer" >
+		<property name="action" value="buy" />
+		<property name="type" value="1" /> 
+	</bean>
+	
+</beans>

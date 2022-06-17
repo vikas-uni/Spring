@@ -1,0 +1,70 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- Which says that we want all URLs within 
+		our application to be secured, requiring the role ROLE_USER to access them. 
+		The <http> element is the parent for all web-related namespace functionality. 
+		The <intercept-url> element defines a pattern which is matched against the 
+		URLs of incoming requests using an ant path style syntax. 
+		The access attribute defines the access requirements for requests matching the given pattern. 
+		With the default configuration, this is typically a comma-separated list 
+		of roles, one of which a user must have to be allowed to make the request. 
+		The prefix "ROLE_" is a marker which indicates that a simple comparison with 
+		the user's authorities should be made. In other words, a normal role-based 
+		check should be used. Access-control in Spring Security is not limited to 
+		the use of simple roles (hence the use of the prefix to differentiate between 
+		different types of security attributes). We'll see later how the interpretation 
+		can vary. -->
+	<http auto-config="true">
+		<intercept-url pattern="/admin**" access="ROLE_USER" />
+	</http>
+
+	<!-- if DB is needed -->
+	<!-- <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:mem://personDb" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean> 
+	
+		<bean id="dbUtil" class="com.studytrails.tutorials.springsecurityusingdb.DbUtil"
+		init-method="initialize">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<authentication-manager>
+		<authentication-provider>
+		<jdbc-user-service
+			data-source-ref="dataSource"
+			users-by-username-query="select username,password,enabled from user_authentication where username=?"
+			authorities-by-username-query="select u1.username, u2.role from user_authentication u1, user_authorization u2 where u1.user_id = u2.user_id and u1.username =?" />
+		</authentication-provider>
+	</authentication-manager>
+	-->
+
+	<!-- Spring security supports more then 20 Models for authentication. Some 
+		of them are X.509 client certificate exchange LDAP Authentication OpenID 
+		authentication Java Open Source Single Sign On
+		
+		The tag <authentication-manager> processes the authentication information; 
+		<authentication-provider> defines the credential information and the roles given to 
+		each user (authentication information). -->
+	<!-- It tells, only user “mkyong” is allowed to access the /admin URL. -->
+	<authentication-manager>
+		<!-- Using the <authentication-provider> element means that the user information 
+			will be used by the authentication manager to process authentication requests. 
+			You can have multiple <authentication-provider> elements to define different 
+			authentication sources and each will be consulted in turn. -->
+		<authentication-provider>
+			<user-service>
+				<user name="mkyong" password="123456" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

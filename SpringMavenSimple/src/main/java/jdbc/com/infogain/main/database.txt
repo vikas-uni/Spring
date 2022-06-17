@@ -1,0 +1,1 @@
+CREATE TABLE Employee2(ID int primary key,name varchar(255),role varchar2(20));
